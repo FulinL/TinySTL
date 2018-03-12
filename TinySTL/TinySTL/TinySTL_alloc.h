@@ -1,12 +1,50 @@
 #ifndef _ALLOC_
 #define _ALLOC_
-#include <new>
+
 #include <cstdlib>
-#include <cstddef>
-#include <climits>
-#include <iostream>
+
 namespace TinySTL
 {
+	template<int inst>
+	class __malloc_alloc_template
+	{
+	private:
+		/*处理内存不足情况*/
+		static void *oom_malloc(size_t);
+		static void *oom_realloc(void *,size_t);
+		static void(*__malloc_alloc_oom_handler)();
+	
+	public:
+		static void * allocate(size_t n)
+		{
+			void *result = malloc(n);	//第一级配置器直接使用malloc()
+			if (result == 0)
+				result = oom_malloc(n);
+			return result;
+		}
+
+		static void deallocate(void *p, size_t /*n*/)
+		{
+			free(p);	//第一级配置器直接使用free()
+		}
+
+		static void * reallocate(void *p, size_t /*old_sz*/, size_t new_sz)
+		{
+			void *result = realloc(p, new_sz);
+			if (result == 0)
+				result = oom_realloc(p, new_sz);
+			return result;
+		}
+
+		static void(*set_malloc_handler(void(*f)())) ()
+		{
+			void(*old)() = __malloc_alloc_oom_handler;
+			__malloc_alloc_oom_handler = f;
+			return (old);
+		}
+
+	};
+	/*
 	template<class T>
 	inline T* _allocate(ptrdiff_t size, T*)
 	{
@@ -90,7 +128,7 @@ namespace TinySTL
 		{
 			return size_type(UINT_MAX / sizeof(T));
 		}
-	};
+	};*/
 }
 #endif // !_ALLOC_
 
