@@ -11,7 +11,7 @@
 
 namespace TinySTL
 {
-	//一级配置器
+	//一级空间配置器
 	template<int inst>
 	void(*__malloc_alloc_template<inst>::__malloc_alloc_oom_handler)() = 0;
 

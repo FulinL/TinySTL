@@ -44,6 +44,7 @@ namespace TinySTL
 		}
 
 	};
+
 	/*
 	template<class T>
 	inline T* _allocate(ptrdiff_t size, T*)
