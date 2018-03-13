@@ -52,4 +52,17 @@ namespace TinySTL
 				return (result);
 		}
 	}
+
+
+	//¶þ¼¶¿Õ¼äÅäÖÃÆ÷
+
+	template<bool threads, int inst>
+	char *__default_alloc_template<threads, inst>::start_free = 0;
+	template<bool threads, int inst>
+	char *__default_alloc_template<threads, inst>::end_free = 0;
+	template<bool threads, int inst>
+	size_t __default_alloc_template<threads, inst>::heap_size = 0;
+
+	template<bool threads, int inst>
+	typename __default_alloc_template<threads, inst>::obj * volatile __default_alloc_template<threads, inst>::free_list[__NFREELISTS] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 }
