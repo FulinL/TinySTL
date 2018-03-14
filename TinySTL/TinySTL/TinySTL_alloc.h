@@ -1,7 +1,6 @@
 #ifndef _ALLOC_
 #define _ALLOC_
 #include <cstdlib>
-
 namespace TinySTL
 {
 	template<class T, class Alloc>
@@ -144,7 +143,6 @@ namespace TinySTL
 	};
 	typedef __default_alloc_template<0, 0> alloc;
 	
-
 	/*
 	template<class T>
 	inline T* _allocate(ptrdiff_t size, T*)

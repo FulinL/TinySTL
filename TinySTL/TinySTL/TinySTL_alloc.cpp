@@ -12,9 +12,8 @@
 namespace TinySTL
 {
 	//一级空间配置器
-	template<int inst>
+	template<int inst> 
 	void(*__malloc_alloc_template<inst>::__malloc_alloc_oom_handler)() = 0;
-
 
 	template<int inst>
 	void * __malloc_alloc_template<inst>::oom_malloc(size_t n)
@@ -82,7 +81,7 @@ namespace TinySTL
 			return (chunk);
 		my_free_list = free_list + FREELIST_INDEX(n);
 
-		result = (*obj chunk);
+		result = (obj*) chunk;
 		*my_free_list = next_obj = (obj *)(chunk + n);
 
 		for (i = 1; ; i++)
@@ -103,7 +102,7 @@ namespace TinySTL
 	}
 
 	template<bool threads, int inst>
-	char * __default_alloc_template<threads, inst>::chunk_alloc(size_t size, int & nobjs)
+	char * __default_alloc_template<threads, inst>::chunk_alloc(size_t size, int &nobjs)
 	{
 		char * result;
 		size_t total_bytes = size * nobjs;
@@ -141,7 +140,7 @@ namespace TinySTL
 			{
 				//heap空间不足，malloc失败
 				int i;
-				obj * volatile my_free_list, *p;
+				obj * volatile *my_free_list, *p;
 
 				for (i = size; i <= __MAX_BYTES; i += __ALIGN)
 				{
@@ -163,6 +162,5 @@ namespace TinySTL
 				return (chunk_alloc(size, nobjs));
 			}
 		}
-
 	}
 }
