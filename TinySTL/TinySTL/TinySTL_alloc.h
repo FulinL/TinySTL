@@ -4,13 +4,35 @@
 
 namespace TinySTL
 {
+	template<class T, class Alloc>
+	class simple_alloc
+	{
+	public:
+		static T* allocate(size_t n)
+		{
+			return n == 0 ? 0 : (T*)Alloc::allocate(n * sizeof(T));
+		}
+		static T* allocate(void)
+		{
+			return (T*)Alloc::allocate(sizeof(T));
+		}
+		static void deallocate(T* p, size_t n)
+		{
+			Alloc::deallocate(p, n * sizeof(T));
+		}
+		static void deallocate(T* p)
+		{
+			Alloc::deallocate(p, sizeof(T));
+		}
+	};
+
 	template<int inst>
 	class __malloc_alloc_template
 	{
 	private:
 		/*处理内存不足情况*/
-		static void *oom_malloc(size_t);
-		static void *oom_realloc(void *,size_t);
+		static void* oom_malloc(size_t);
+		static void* oom_realloc(void *, size_t);
 		static void(*__malloc_alloc_oom_handler)();
 	
 	public:
@@ -50,6 +72,7 @@ namespace TinySTL
 	enum {__NFREELISTS = __MAX_BYTES/__ALIGN};
 	
 	//第二级配置器
+	
 	template <bool threads, int inst>
 	class __default_alloc_template
 	{
@@ -119,7 +142,8 @@ namespace TinySTL
 		}
 		static void * reallocate(void *p, size_t old_sz, size_t new_sz);
 	};
-
+	typedef __default_alloc_template<0, 0> alloc;
+	
 
 	/*
 	template<class T>
