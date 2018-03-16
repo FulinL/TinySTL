@@ -24,6 +24,9 @@
     <ClInclude Include="TinySTL_alloc.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="TinySTL_iterator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

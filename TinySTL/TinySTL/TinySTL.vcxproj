@@ -150,6 +150,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TinySTL_alloc.h" />
+    <ClInclude Include="TinySTL_iterator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
