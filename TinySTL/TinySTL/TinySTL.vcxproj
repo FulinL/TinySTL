@@ -151,6 +151,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TinySTL_alloc.h" />
     <ClInclude Include="TinySTL_iterator.h" />
+    <ClInclude Include="TinySTL_type_traits.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
