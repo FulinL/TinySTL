@@ -150,6 +150,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TinySTL_alloc.h" />
+    <ClInclude Include="TinySTL_construct.h" />
     <ClInclude Include="TinySTL_iterator.h" />
     <ClInclude Include="TinySTL_type_traits.h" />
     <ClInclude Include="TinySTL_vector.h" />
