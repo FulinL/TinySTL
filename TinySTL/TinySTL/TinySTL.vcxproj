@@ -153,6 +153,7 @@
     <ClInclude Include="TinySTL_construct.h" />
     <ClInclude Include="TinySTL_iterator.h" />
     <ClInclude Include="TinySTL_type_traits.h" />
+    <ClInclude Include="TinySTL_uninitialized.h" />
     <ClInclude Include="TinySTL_vector.h" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TinySTL_alloc.cpp" />
+    <ClCompile Include="TinySTL_vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

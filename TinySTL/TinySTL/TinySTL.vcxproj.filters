@@ -36,6 +36,9 @@
     <ClInclude Include="TinySTL_construct.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="TinySTL_uninitialized.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -45,6 +48,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TinySTL_alloc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TinySTL_vector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
