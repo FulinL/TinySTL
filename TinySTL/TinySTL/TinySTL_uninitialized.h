@@ -88,7 +88,7 @@ namespace  TinySTL
 	template<class InputIterator, class ForwardIterator>
 	inline ForwardIterator uninitialized_copy(InputIterator first, InputIterator last, ForwardIterator result)
 	{
-		return __uninitialized_copy(first, last, result);
+		return __uninitialized_copy(first, last, result, value_type(result));
 	}
 };
 #endif // !__UNINITIALIZED_

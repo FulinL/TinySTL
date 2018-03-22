@@ -13,7 +13,7 @@ namespace TinySTL
 		typedef value_type*	iterator;
 		typedef value_type&	reference;
 		typedef size_t		size_type;
-		typedef ptrdiff_t	sifference_type;
+		typedef ptrdiff_t	difference_type;
 
 	protected:
 		typedef simple_alloc<value_type, Alloc> data_allocator;
@@ -28,11 +28,18 @@ namespace TinySTL
 				data_allocator::deallocate(start, end_of_storage - start);
 		}
 
+		void fill_initialize(size_type n, const T& x)
+		{
+			start = allocate_and_fill(n, x);
+			finish = start + n;
+			end_of_storage = finish;
+		}
+
 	public:
 		iterator begin() { return start; }
 		iterator end() { return finish; }
-		size_t size() { return size_type(end()) - size_type(begin()); }
-		size_t capacity() const
+		size_type size() { return size_type(end() - begin()); }
+		size_type capacity() 
 		{
 			return size_type(end_of_storage - begin());
 		}
@@ -58,6 +65,8 @@ namespace TinySTL
 		}
 		reference front() { return *begin(); }
 		reference back() { return *(end() - 1); }
+
+		void insert(iterator position, size_type n, const T& x);
 		void push_back(const T& x)
 		{
 			if (finish != end_of_storage)
@@ -93,6 +102,7 @@ namespace TinySTL
 				insert(end(), new_size - size(), x);
 		}
 		void resize(size_type new_size) { resize(new_size, T()); }
+
 		void clear() { erase(begin(), end()); }
 
 	protected:
