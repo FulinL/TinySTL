@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <algorithm>
 #include "TinySTL_vector.h"
 
 namespace TinySTL
@@ -10,18 +11,17 @@ namespace TinySTL
 		{
 			construct(finish, *(finish - 1));
 			finish++;
-			T x_copy = x;
 			//copy_backward(position, finish - 2, finish - 1);
-			*position = x_copy;
+			*position = x;
+			return;
 		}
 		else	//没有备用空间
 		{
 			const size_type old_size = size();
-			const size_type len = old_size != 0 ? 2 * old_size : 1;
+			const size_type len = (old_size != 0 ? 2 * old_size : 1);
 			iterator new_start = data_allocator::allocate(len);
-			iterator new_finish = new_start;
+			iterator new_finish = uninitialized_copy(start, position, new_start);
 
-			new_finish = uninitialized_copy(start, position, new_start);
 			construct(new_finish, x);
 			new_finish++;
 			new_finish = uninitialized_copy(position, finish, new_finish);
@@ -31,9 +31,10 @@ namespace TinySTL
 			start = new_start;
 			finish = new_finish;
 			end_of_storage = new_start + len;
+
 		}
 	}
-
+	/*
 	template<class T, class Alloc>
 	void vector<T, Alloc>::insert(iterator position, size_type n, const T& x)
 	{
@@ -80,4 +81,5 @@ namespace TinySTL
 			}
 		}
 	}
+	*/
 }

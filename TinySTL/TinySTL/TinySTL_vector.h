@@ -1,7 +1,9 @@
 #ifndef __VECTOR_
 #define __VECTOR_
+#include <algorithm>
 #include "TinySTL_alloc.h"
-
+#include "TinySTL_uninitialized.h"
+#include "TinySTL_construct.h"
 namespace TinySTL
 {
 	template<class T, class Alloc = alloc>

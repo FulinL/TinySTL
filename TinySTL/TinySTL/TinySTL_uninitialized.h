@@ -5,6 +5,7 @@
 #include "TinySTL_iterator.h"
 #include "TinySTL_type_traits.h"
 #include <string>
+#include <algorithm>
 namespace  TinySTL
 {
 	//uninitialized_fill
@@ -53,7 +54,13 @@ namespace  TinySTL
 	template<class InputIterator, class ForwardIterator>
 	inline ForwardIterator __uninitilaized_copy_aux(InputIterator first, InputIterator last, ForwardIterator result, __true_type)
 	{
-		return copy(first, last, result);
+		while (first != last)
+		{
+			*result = *first;
+			first++;
+			result++;
+		}
+		return result;
 	}
 
 	template<class InputIterator, class ForwardIterator>
