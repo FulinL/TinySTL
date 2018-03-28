@@ -157,10 +157,10 @@ namespace TinySTL
 				}
 				end_free = 0;
 				start_free = (char *)malloc_alloc::allocate(bytes_to_get);
-				heap_size += bytes_to_get;
-				end_free = start_free + bytes_to_get;
-				return (chunk_alloc(size, nobjs));
 			}
+			heap_size += bytes_to_get;
+			end_free = start_free + bytes_to_get;
+			return (chunk_alloc(size, nobjs));
 		}
 	}
 }
