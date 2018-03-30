@@ -39,6 +39,9 @@
     <ClInclude Include="TinySTL_uninitialized.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="TinySTL_list.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

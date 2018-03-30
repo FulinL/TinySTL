@@ -152,6 +152,7 @@
     <ClInclude Include="TinySTL_alloc.h" />
     <ClInclude Include="TinySTL_construct.h" />
     <ClInclude Include="TinySTL_iterator.h" />
+    <ClInclude Include="TinySTL_list.h" />
     <ClInclude Include="TinySTL_type_traits.h" />
     <ClInclude Include="TinySTL_uninitialized.h" />
     <ClInclude Include="TinySTL_vector.h" />
