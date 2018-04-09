@@ -25,7 +25,7 @@ namespace TinySTL
 		typedef __list_iterator<T, Ref, Ptr>	self;
 
 		typedef bidirectional_iterator_tag		iterator_category;
-		typedef TinySTL							value_type;
+		typedef T								value_type;
 		typedef Ptr								pointer;
 		typedef Ref								reference;
 		typedef __list_node<T>*					link_type;
@@ -42,7 +42,7 @@ namespace TinySTL
 		bool operator != (const self& x)const { return node != x.node; }
 
 		reference operator *() const { return (*node).data; }
-		poointer operator-> () const { return &(operator*()); }
+		pointer operator-> () const { return &(operator*()); }
 
 		self& operator ++()
 		{
@@ -77,9 +77,16 @@ namespace TinySTL
 	 	typedef __list_node<T> list_node;
 		typedef simple_alloc<list_node, Alloc> list_node_allocator;
 	protected:
-		typedef __list_node<t> list_node;
+		typedef __list_node<T> list_node;
 	public:
-		typedef list_node* link_type;
+		typedef __list_iterator<T, T&, T*>			iterator;
+		typedef __list_iterator<T, const T&, T*>	const_iterator;
+		typedef list_node*							link_type;
+		typedef T									value_type;
+		typedef value_type*							pointer;
+		typedef value_type&							reference;
+		typedef size_t								size_type;
+		typedef ptrdiff_t							difference_type;
 	protected:
 		link_type node;
 
@@ -89,7 +96,7 @@ namespace TinySTL
 		bool empty() { return node->next == node; }
 		size_type size()const
 		{
-			return (size_type)(distance(begin(), end()));
+			return distance(begin(), end());
 		}
 		reference front() { return *begin(); }
 		reference back() { return *(--end()); }
@@ -122,8 +129,8 @@ namespace TinySTL
 		iterator insert(iterator position, const T& x)
 		{
 			link_type tmp = creat_node(x);
-			tmp->next = position->next;
-			tmp->prev = position->prev;
+			tmp->next = position.node;
+			tmp->prev = position.node->prev;
 			(link_type(position.node->prev))->next = tmp;
 			position.node->prev = tmp;
 			return tmp;
